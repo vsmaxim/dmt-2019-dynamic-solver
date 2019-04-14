@@ -10,6 +10,6 @@ Simply run `pip install git+https://github.com/vsmaxim/dmt-2019-dynamic-solver@m
 
 ## Methods
 
-There are only two methods available now in the module.
+There are only two methods available now in the module.  
 `dynamic_solver.solve(initial_state: float) -> float` - returns optimal solution with defined initial_state
 `dynamic_solver.set_precision(new_precision: float) -> None` - sets new precision for global solver object
