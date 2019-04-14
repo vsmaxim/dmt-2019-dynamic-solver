@@ -25,6 +25,7 @@ private:
     long maxStage;
     double precision;
     std::vector<std::unordered_map<double, std::pair<double, double>>> cache;
+
 public:
     DynamicSolver(long maxStage, double precision) : maxStage(maxStage), precision(precision) {
         cache.resize(static_cast<unsigned int>(maxStage + 1));
@@ -65,6 +66,22 @@ public:
             cache[0].erase(cache[0].find(initialState));
         }
         return global_profit(0, initialState);
+    }
+
+    std::vector<double> constructPlan(double state) {
+        std::vector<double> result;
+
+        for (int stage = 0; stage < maxStage; ++stage) {
+            result.push_back(cache[stage][state].second);
+            state = local_state_change(state, result.back());
+        }
+
+        return result;
+    }
+
+    const auto getCache()
+    {
+        return cache;
     }
 };
 #endif //DYNAMIC_SOLVER_SOLVER_H
